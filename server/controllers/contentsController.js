@@ -5,6 +5,7 @@ import { createDynamicContent } from '../utils/createDynamicsContent.js';
 import { deleteDynamicsContent } from '../utils/deleteDynamicsContent.js';
 import { updateDynamicsContent } from '../utils/updateDynamicsContent.js';
 import { localeIdLanguage } from '../utils/localeIdLanguage.js';
+import { getLanguageId } from '../utils/changeLanguageNumber.js';
 
 export const getAllContents = async (req, res) => {
 	if (!req.user) {
@@ -21,28 +22,8 @@ export const getAllContents = async (req, res) => {
 
 export const createContent = async (req, res) => {
 	const { title, content, language } = req.body;
-	console.log('language', language);
-	console.log('title', title);
-	console.log('content', content);
 
-	let numLanguage;
-
-	switch (language) {
-		case 'English':
-			numLanguage = 1176;
-			break;
-		case 'Spanish':
-			numLanguage = 2;
-			break;
-		case 'French':
-			numLanguage = 16;
-			break;
-		default:
-			numLanguage = 'Unknown';
-			break;
-	}
-
-	console.log('language', numLanguage);
+	const numLanguage = await getLanguageId(language);
 
 	const newContent = await createDynamicContent(title, content, numLanguage);
 

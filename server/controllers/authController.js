@@ -16,7 +16,11 @@ export const register = async (req, res) => {
 	res.status(HttpStatusCode.Created).json({ msg: 'User created', user });
 };
 export const login = async (req, res) => {
-	const user = await User.findOne({ email: req.body.email });
+	console.log(req.body);
+
+	const email = req.body.email;
+
+	const user = await User.findOne({ email });
 
 	const token = createJWT({ userId: user._id, role: user.role });
 

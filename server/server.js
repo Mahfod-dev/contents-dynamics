@@ -10,12 +10,11 @@ import authRouter from './router/authRouter.js';
 import { authenticateUser } from './middleware/authMiddleware.js';
 import cookieParser from 'cookie-parser';
 import useRouter from './router/useRouter.js';
+import fileUpload from './router/fileRouter.js';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
 dotenv.config();
-
-//OtEHSJ3fQrhAssdokwBFsKID000grItmkzNJnth6;
 
 const app = express();
 
@@ -36,11 +35,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/api/v1/contents', authenticateUser, contentsRouter);
 app.use('/api/v1/auth', authRouter);
-// app.use('/api/v1/users', authenticateUser, useRouter);
+app.use('/api/v1/users', authenticateUser, useRouter);
+app.use('/api/v1/files', fileUpload);
 
-app.get('*', (req, res) => {
-	res.sendFile(path.resolve(__dirname, './public', 'index.html'));
-});
+// app.get('*', (req, res) => {
+// 	res.sendFile(path.resolve(__dirname, './public', 'index.html'));
+// });
 
 app.use('*', (req, res) => {
 	res.status(404).json({ msg: 'not found' });

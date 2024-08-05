@@ -9,7 +9,7 @@ day.extend(advancedFormat);
 
 type ContentProps = {
 	title: string;
-	content: string;
+	content?: string;
 	language: number | string;
 	id: number;
 	createdAt?: Date;
@@ -38,33 +38,18 @@ const Content = ({ title, content, language, id }: ContentProps) => {
 			<header></header>
 			<div className='content'>
 				<div className='content-center'>
-					<ContentInfo
-						icon={<FaLocationArrow />}
-						text={title}
-					/>
-					<ContentInfo
-						icon={<FaCalendarAlt />}
-						text={content}
-					/>
-					<ContentInfo
-						icon={<FaBriefcase />}
-						text={language}
-					/>
+					<ContentInfo icon={<FaLocationArrow />} text={title} />
+					<ContentInfo icon={<FaCalendarAlt />} text={title} />
+					<ContentInfo icon={<FaBriefcase />} text={language} />
 				</div>
 
 				<footer className='actions'>
-					<Link
-						to={`../edit-content/${id}`}
-						className='btn edit-btn'>
+					<Link to={`../edit-content/${id}`} className='btn edit-btn'>
 						Edit
 					</Link>
 
-					<Form
-						method='post'
-						action={`../delete-content/${id}`}>
-						<button
-							type='submit'
-							className='btn delete-btn'>
+					<Form method='post' action={`../delete-content/${id}`}>
+						<button type='submit' className='btn delete-btn'>
 							Delete
 						</button>
 					</Form>

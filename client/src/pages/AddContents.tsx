@@ -2,6 +2,7 @@ import { FormRow } from '../components/ui';
 import Wrapper from '../assets/wrappers/DashboardFormPage';
 import { Form, useNavigation } from 'react-router-dom';
 import FormRowSelect from '../components/ui/FormRowSelect';
+import ImportCSV from '../components/csv/ImportCSV';
 
 const AddContents = () => {
 	const navigation = useNavigation();
@@ -14,10 +15,11 @@ const AddContents = () => {
 				className='form'>
 				<h4 className='form-title'>add dynamics contents</h4>
 				<div className='form-center'>
-					<FormRow
+					// FormRow is a component that takes in a type and name prop
+					{/* <FormRow
 						type='text'
 						name='title'
-					/>
+					/> */}
 					<FormRow
 						type='text'
 						name='content'
@@ -34,7 +36,6 @@ const AddContents = () => {
 						list={['English', 'Spanish', 'French']}
 						defaultValue='French'
 					/>
-
 					<button
 						type='submit'
 						className='btn btn-block form-btn '
@@ -43,6 +44,8 @@ const AddContents = () => {
 					</button>
 				</div>
 			</Form>
+
+			<ImportCSV />
 		</Wrapper>
 	);
 };

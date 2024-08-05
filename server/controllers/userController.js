@@ -2,8 +2,14 @@ import { HttpStatusCode } from 'axios';
 import User from '../models/UserModel.js';
 
 export const getCurrentUser = async (req, res) => {
+	console.log(req.user);
+
 	const user = await User.findOne({ _id: req.user.userId });
-	res.status(HttpStatusCode.Ok).json({ user });
+
+	const userWithOutPassword = user.toJSON();
+
+	console.log(user);
+	res.status(HttpStatusCode.Ok).json({ user: userWithOutPassword });
 };
 
 export const getApplicationStats = async (req, res) => {
@@ -11,6 +17,10 @@ export const getApplicationStats = async (req, res) => {
 };
 
 export const updateUser = async (req, res) => {
-	const updatedUser = await User.findByIdAndUpdate(req.user.userId, req.body);
+	const obj = { ...req.body };
+
+	delete obj.password;
+
+	const updatedUser = await User.findByIdAndUpdate(req.user.userId, obj);
 	res.status(HttpStatusCode.Ok).json({ msg: 'user updated' });
 };

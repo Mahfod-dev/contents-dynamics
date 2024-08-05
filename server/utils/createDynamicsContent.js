@@ -2,7 +2,9 @@ import axios from 'axios';
 import { removeSpecialCharactersAndLowercase } from './removeSpecialCharacter.js';
 
 export const createDynamicContent = async (name, content, language) => {
-	let str = removeSpecialCharactersAndLowercase(name);
+	// console.log(name, content, language);
+
+	let str = removeSpecialCharactersAndLowercase(content);
 
 	try {
 		const data = JSON.stringify({

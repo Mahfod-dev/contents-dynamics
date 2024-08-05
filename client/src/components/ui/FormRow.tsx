@@ -6,6 +6,7 @@ interface FormRowProps {
 	labelText?: string;
 	defaultValue?: string;
 	onChange?: React.ChangeEventHandler<HTMLInputElement>;
+	accept?: string;
 }
 
 export const FormRow = ({
@@ -14,6 +15,7 @@ export const FormRow = ({
 	labelText,
 	defaultValue = '',
 	onChange,
+	accept,
 }: FormRowProps) => {
 	return (
 		<div className='form-row'>
@@ -30,6 +32,7 @@ export const FormRow = ({
 				defaultValue={defaultValue}
 				required
 				onChange={onChange}
+				accept={accept}
 			/>
 		</div>
 	);
