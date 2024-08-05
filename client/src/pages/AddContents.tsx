@@ -15,7 +15,6 @@ const AddContents = () => {
 				className='form'>
 				<h4 className='form-title'>add dynamics contents</h4>
 				<div className='form-center'>
-					// FormRow is a component that takes in a type and name prop
 					{/* <FormRow
 						type='text'
 						name='title'
